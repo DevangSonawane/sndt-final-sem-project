@@ -1,0 +1,349 @@
+* {
+  font-family: Poppins, sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #f1e6d6;
+}
+
+/* ================= HEADER (MOBILE) ================= */
+header {
+  display: flex;
+  flex-direction: column; /* stack on mobile */
+  gap: 12px;
+  padding: 15px;
+  background: #800020;
+  color: #f1e6d6;
+  text-align: center;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.actions button {
+  padding: 8px 14px;
+  background: #f1e6d6;
+  color: #800020;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* ================= CUSTOMER LIST BUTTON ================= */
+.customer-list-bar {
+  padding: 10px;
+  text-align: center;
+}
+
+.customer-list-bar button {
+  padding: 8px 16px;
+  background: #800020;
+  color: #f1e6d6;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+/* ================= SECTION ================= */
+.employee-section,
+.customer-section {
+  padding: 12px;
+}
+
+.customer-header,
+.employee-header {
+  margin-bottom: 10px;
+  font-size: 25px;
+  color: #800020;
+  font-weight: 600;
+}
+/* ================= TABLE (MOBILE FRIENDLY) ================= */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #f7f5f3;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  animation: fadeIn 0.6s ease;
+}
+
+thead {
+  background-color: #c9b9a5;
+}
+
+tbody tr {
+  transition: 0.3s ease;
+  border-bottom: 1px solid #e0d6cc;
+}
+
+tbody tr:hover {
+  background: #ece4dc;
+  transform: scale(1.01);
+}
+
+th,
+td {
+  padding: 8px;
+  text-align: center;
+}
+
+/* hide first column spacing issue on small screens */
+th:first-child,
+td:first-child {
+  width: 30px;
+}
+
+.assigned {
+  background: #d4f4dd;
+  color: #0b7a32;
+  padding: 6px 14px;
+  margin-top: 1rem;
+  margin-right: 4rem;
+  margin-left: 1rem;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.not {
+  margin-top: 1rem;
+  margin-right: 4rem;
+  margin-left: 1rem;
+  background: #f8d7da;
+  color: #b4232c;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.assigned-customers {
+  font-size: 11px;
+  color: #555;
+}
+
+/* ================= DELETE BOX ================= */
+.delete-box {
+  width: 20px;
+  height: 20px;
+  background: #800020;
+  color: #f1e6d6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 11px;
+  margin: auto;
+}
+
+.delete-box.small {
+  width: 16px;
+  height: 16px;
+  font-size: 9px;
+}
+
+/* ================= MODAL (MOBILE) ================= */
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 20px;
+  width: 90%; /* full width on mobile */
+  max-width: 320px;
+  border-radius: 15px;
+  display: none;
+  z-index: 100;
+}
+
+.modal.show {
+  display: block;
+}
+
+.modal input {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 8px;
+  border: 1px solid #800020;
+}
+
+.modal button {
+  width: 100%;
+  padding: 10px;
+  background: #800020;
+  color: #f1e6d6;
+  border: none;
+  border-radius: 15px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.cancel {
+  background: #ccc;
+  color: #333;
+}
+
+/* ================= CUSTOMER ROW ================= */
+.customer-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  margin: 6px 0;
+}
+
+/* ================= BLUR ================= */
+.blur {
+  filter: blur(5px);
+  pointer-events: none;
+}
+
+/* ================= SEARCH BOX ================= */
+.search-box {
+  display: flex;
+  justify-content: flex-end; /* RIGHT SIDE */
+  margin-bottom: 10px;
+}
+
+.search-box input {
+  padding: 8px 12px;
+  border-radius: 20px;
+  border: 1px solid #800020;
+  outline: none;
+  width: 220px;
+}
+
+@media screen and (min-width: 600px) {
+  header {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+
+  .actions button {
+    margin: 15px 10px;
+    border: none;
+    cursor: pointer;
+  }
+  .employee-section {
+    padding: 20px;
+  }
+
+  .customer-list-bar {
+    margin-top: 20px;
+    padding: 10px 20px;
+    display: flex;
+    font-size: 16px;
+    justify-content: left;
+  }
+
+  table {
+    font-size: 16px;
+  }
+
+  th,
+  td {
+    padding: 16px;
+  }
+  .modal {
+    width: 320px;
+  }
+  .search-box {
+    justify-content: flex-end;
+  }
+
+  .search-box input {
+    width: 260px;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.password-wrapper {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding: 10px 40px 10px 10px;
+}
+
+.eye {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 14px;
+  color: #800020;
+  transition: 0.3s;
+}
+
+.eye:hover {
+  transform: translateY(-50%) scale(1.2);
+}
+
+/* ===== MESSAGE MODAL BUTTON ===== */
+#messageModal button {
+  background: #800020;
+}
+
+.danger {
+  background: #b4232c;
+  color: white;
+}
+.customer-list-bar {
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px; /* 👈 dono buttons ke beech distance */
+}
+
+.customer-list-bar button {
+  padding: 8px 16px;
+  background: #800020;
+  color: #f1e6d6;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+/* optional different style */
+.details-btn {
+  background: #a8324a;
+}
+
+.customer-list-bar button {
+  margin-right: 10px;
+}
+
+.customer-row {
+  margin: 8px 0;
+}

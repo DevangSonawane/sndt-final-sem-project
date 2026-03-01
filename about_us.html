@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About us</title>
+
+    <link rel="stylesheet" href="./css/about_us.css" />
+  </head>
+
+  <body>
+    <div id="header-container"></div>
+
+    <!-- rest of your page content -->
+
+    <script>
+      fetch("navigation.html")
+        .then((res) => res.text())
+        .then((data) => {
+          document.getElementById("header-container").innerHTML = data;
+        });
+    </script>
+    <section class="about-section">
+      <h1 class="title">About Us</h1>
+      <div class="about-grid">
+        <h1>
+          <span class="postpolit">PostPolit</span><br />
+          We don't just post. We grow your brand !!!
+        </h1>
+        <div class="about-card">
+          <span class="line"></span>
+          <h3>Who Are We</h3>
+          <p>
+            Founded in 2019, Digi Studio is a full-service digital marketing
+            agency based in Mumbai. Our team of passionate strategists and
+            creators crafts personalised marketing journeys for startups and
+            established enterprises, turning bold ambitions into measurable
+            success.
+          </p>
+        </div>
+
+        <div class="about-card">
+          <span class="line"></span>
+          <h3>Our Mission</h3>
+          <p>
+            We aim to transform digital presence across industries such as
+            hospitality, healthcare, and retail. By blending creativity with
+            data-driven strategies, we help brands build strong connections and
+            achieve sustainable growth.
+          </p>
+        </div>
+
+        <div class="about-card">
+          <span class="line"></span>
+          <h3>What We Do</h3>
+          <p>
+            We provide end-to-end digital solutions including social media
+            management, website development, branding, e-commerce solutions, and
+            SEO optimization, helping businesses grow and stand out in the
+            digital space.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer will load here -->
+    <div id="footer"></div>
+    <script>
+      fetch("footer.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("footer").innerHTML = data;
+        });
+    </script>
+  </body>
+</html>

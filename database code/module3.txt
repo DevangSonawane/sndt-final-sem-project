@@ -1,0 +1,44 @@
+CREATE TABLE projects (
+    project_id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    caption TEXT,
+    platform VARCHAR(50),
+    scheduled_date DATE,
+    status VARCHAR(50) DEFAULT 'Planned',
+    created_by VARCHAR(100),
+    created_role VARCHAR(20),
+    assigned_to VARCHAR(100),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE content (
+  content_id INT AUTO_INCREMENT PRIMARY KEY,
+  emp_id VARCHAR(50),
+  customer_name VARCHAR(100),
+  project_name VARCHAR(150),
+  project_caption TEXT,
+  platform VARCHAR(50),
+  status VARCHAR(20) DEFAULT 'Draft',
+  schedule_date DATE,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE post_media (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  post_id INT,
+  media_path VARCHAR(255),
+  FOREIGN KEY (post_id)
+  REFERENCES content(content_id)
+  ON DELETE CASCADE
+);
+CREATE TABLE social_accounts (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  employee_id VARCHAR(50) NOT NULL,
+  platform ENUM('instagram','facebook') NOT NULL,
+  social_id VARCHAR(100) NOT NULL,
+  access_token TEXT NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (employee_id)
+  REFERENCES employees(emp_id)
+  ON DELETE CASCADE
+);
+

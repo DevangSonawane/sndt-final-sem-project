@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>contact us</title>
+    <link rel="stylesheet" href="./css/contact.css" />
+  </head>
+
+  <body>
+    <div id="header-container"></div>
+
+    <!-- rest of your page content -->
+
+    <script>
+      fetch("navigation.html")
+        .then((res) => res.text())
+        .then((data) => {
+          document.getElementById("header-container").innerHTML = data;
+        });
+    </script>
+    <!--Contact-->
+    <div id="contact">
+      <h1>Let's get in touch</h1>
+      <div class="grid-contact">
+        <div class="contact-form">
+          <h2>Send us a Message</h2>
+          <form>
+            <label for="name">Name:</label>
+            <input
+              type="text"
+              id="name"
+              placeholder="Enter your name"
+            /><br /><br />
+
+            <label for="email">Email: </label>
+            <input
+              type="email"
+              id="email"
+              placeholder="Enter your email"
+            /><br /><br />
+
+            <label for="message">Message: </label><br />
+
+            <textarea
+              placeholder="Tell us about your goals and how we can help you..."
+              rows="10px"
+              cols="40px"
+            ></textarea>
+
+            <button type="submit" class="submit">Submit</button>
+          </form>
+        </div>
+        <div class="contact-details">
+          <h2>Contact Info</h2>
+          <div class="email">
+            <img src="https://www.svgrepo.com/show/501173/email.svg" alt="" />
+            <h3 class="label">Email:</h3>
+            <a href="mailto:coderarmy@gmail.com" class="value"
+              >codearmy@gmail.com</a
+            >
+          </div>
+          <div class="location">
+            <img
+              src="https://www.svgrepo.com/show/522167/location.svg"
+              alt=""
+            />
+            <h3 class="label">Location:</h3>
+            <p class="value">Mumbai, Maharashtra.</p>
+          </div>
+          <div class="office-hours">
+            <img src="https://www.svgrepo.com/show/514265/time.svg" alt="" />
+            <h3 class="label">Office Hours:</h3>
+
+            <ul>
+              <li>Monday - Friday: 9:00 AM - 6:00 PM PST</li>
+              <li>Saturday: 10:00 AM - 4:00 PM PST</li>
+              <li>Sunday: Closed</li>
+            </ul>
+          </div>
+          <div class="response-time">
+            <img
+              src="https://www.svgrepo.com/show/488421/time-sand.svg"
+              alt=""
+            />
+            <h3 class="label">Response Time:</h3>
+            <p>
+              We typically respond within 24 hours during business days. For
+              urgent inquiries, please call us directly.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer will load here -->
+    <div id="footer"></div>
+    <script>
+      fetch("footer.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("footer").innerHTML = data;
+        });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,13 @@
+Node.js Dependencies:
+- axios
+- cors
+- dotenv
+- express
+- express-session
+- multer
+- mysql2
+- node-cron
+- nodemailer
+
+This file lists the dependencies used in the project.
+To install these dependencies automatically, please run the `install_dependencies.sh` script or navigate to `AdminModule/backend` and run `npm install`.

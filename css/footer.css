@@ -1,0 +1,104 @@
+/* ===== RESET FOR FOOTER FILE ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+hr {
+    width: 80%;
+    margin-left: 10%;
+    border: none;
+    margin-top: 1rem;
+    height: 5px;
+    background-color: #cc667a;
+    background-image: linear-gradient(to right, #800020, #cc667a);
+}
+/* ===== FOOTER ROOT ===== */
+.footer {
+  width: 100%;
+  background-color: #f1e6d6; /* pastel cream */
+  padding: 3rem 1.5rem;
+  font-family: Arial, sans-serif;
+  margin-top: auto;
+}
+
+/* ===== FOOTER INNER WRAPPER ===== */
+.footer-group {
+  max-width: 1200px;
+  margin: 0 auto; /* THIS centers the footer */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+/* ===== FOOTER SECTIONS ===== */
+.footer-section h3 {
+  color: #800020; /* burgundy */
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.footer-section p {
+  color: #333;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* ===== QUICK LINKS ===== */
+.footer-links {
+  list-style: none;
+}
+
+.footer-links li {
+  margin-bottom: 0.6rem;
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: #333;
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #800020;
+}
+
+/* ===== SOCIAL ICONS ===== */
+.footer-social {
+  display: flex;
+  gap: 1rem;
+}
+
+.footer-social a {
+  color: #800020;
+  font-size: 1.2rem;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.footer-social a:hover {
+  transform: scale(1.1);
+}
+
+/* ===== FOOTER BOTTOM ===== */
+.footer-bottom {
+  text-align: center;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  font-size: 0.85rem;
+  color: #555;
+}
+
+/* ===== MOBILE FIX ===== */
+@media (max-width: 600px) {
+  .footer {
+    padding: 2rem 1rem;
+  }
+
+  .footer-group {
+    gap: 1.5rem;
+  }
+}

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Forgot Password</title>
+
+    <link rel="stylesheet" href="./css/Login.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <h2>Forgot Password</h2>
+
+      <div id="verifyBox">
+        <input type="text" id="username" placeholder="Username" />
+        <input type="text" id="userid" placeholder="Employee ID" />
+        <button onclick="verifyUser()">Verify</button>
+      </div>
+
+      <div id="changeBox" style="display: none">
+        <h3>Change Password</h3>
+
+        <div class="password-wrapper">
+          <input type="password" id="newPass" placeholder="New Password" />
+          <span class="eye" onclick="togglePassword('newPass', this)">👁</span>
+        </div>
+
+        <div class="password-wrapper">
+          <input
+            type="password"
+            id="confirmPass"
+            placeholder="Confirm Password"
+          />
+          <span class="eye" onclick="togglePassword('confirmPass', this)"
+            >👁</span
+          >
+        </div>
+
+        <button onclick="changePassword()">Change Password</button>
+      </div>
+    </div>
+
+    <!-- POPUP -->
+    <div class="popup" id="popup">
+      <div class="popup-box">
+        <p id="popupMessage"></p>
+        <button onclick="closePopup()">OK</button>
+      </div>
+    </div>
+
+    <script>
+      let verifiedEmpId = "";
+
+      function showPopup(message) {
+        document.getElementById("popupMessage").innerText = message;
+        document.getElementById("popup").style.display = "flex";
+      }
+
+      function closePopup() {
+        document.getElementById("popup").style.display = "none";
+      }
+
+      function togglePassword(id, element) {
+        const input = document.getElementById(id);
+
+        if (input.type === "password") {
+          input.type = "text";
+          element.innerHTML = "🙈";
+        } else {
+          input.type = "password";
+          element.innerHTML = "👁";
+        }
+      }
+
+      function verifyUser() {
+        const username = document.getElementById("username").value;
+        const userid = document.getElementById("userid").value;
+
+        fetch("http://localhost:3000/verify-user", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username, userid }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.success) {
+              verifiedEmpId = userid;
+              showPopup("User verified successfully ✅");
+
+              document.getElementById("verifyBox").style.display = "none";
+              document.getElementById("changeBox").style.display = "block";
+            } else {
+              showPopup("User not found ❌");
+            }
+          });
+      }
+
+      function changePassword() {
+        const newPass = document.getElementById("newPass").value;
+        const confirmPass = document.getElementById("confirmPass").value;
+
+        if (newPass !== confirmPass) {
+          showPopup("Passwords do not match ❌");
+          return;
+        }
+
+        fetch("http://localhost:3000/change-password", {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            empId: verifiedEmpId,
+            password: newPass,
+          }),
+        })
+          .then((res) => res.text())
+          .then(() => {
+            showPopup("Password changed successfully 🎉");
+
+            setTimeout(() => {
+              window.location.href = "login.html";
+            }, 1500);
+          });
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Analytics Dashboard - PostPilot</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="user.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .analytics-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .analytics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .chart-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            min-height: 400px;
+        }
+
+        .chart-header {
+            margin-bottom: 20px;
+            color: #333;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .stats-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 32px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .fb-stat { color: #1877F2; }
+        .insta-stat { color: #E1306C; }
+
+        .back-btn {
+            padding: 10px 20px;
+            background: #f0f2f5;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .back-btn:hover {
+            background: #e4e6eb;
+        }
+    </style>
+</head>
+<body>
+
+<div class="main-container" style="max-width: 1200px; margin: 0 auto; padding: 20px;">
+    
+    <div class="analytics-header">
+        <div>
+            <h1 style="margin: 0; font-size: 24px;">Analytics Dashboard</h1>
+            <p style="margin: 5px 0 0; color: #666;">Performance metrics for <span id="clientNameDisplay" style="font-weight: bold; color: #333;">...</span></p>
+        </div>
+        <a href="user.html" class="back-btn">
+            ← Back to Dashboard
+        </a>
+    </div>
+
+    <!-- Summary Stats -->
+    <div class="stats-summary">
+        <div class="stat-card">
+            <div class="stat-label">Total Facebook Posts</div>
+            <div class="stat-value fb-stat" id="totalFbPosts">0</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Total Instagram Posts</div>
+            <div class="stat-value insta-stat" id="totalInstaPosts">0</div>
+        </div>
+    </div>
+
+    <!-- Charts Grid -->
+    <div class="analytics-grid">
+        <!-- Pie Chart -->
+        <div class="chart-card">
+            <div class="chart-header">Platform Distribution</div>
+            <div style="height: 300px; position: relative;">
+                <canvas id="platformChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Line Graph -->
+        <div class="chart-card">
+            <div class="chart-header">Posting Activity (Last 30 Days)</div>
+            <div style="height: 300px; position: relative;">
+                <canvas id="activityChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="analytics.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="../AdminModule/css/admin.css" />
+  </head>
+
+  <body>
+    <div id="blur">
+      <header>
+        <h2>Admin Control Panel</h2>
+        <div class="actions">
+          <button onclick="openCustomer()">+ Customer</button>
+          <button onclick="openUser()">+ User</button>
+        </div>
+      </header>
+      <!-- CUSTOMER LIST BUTTON -->
+      <div class="customer-list-bar">
+        <button onclick="toggleCustomerList()">Customer List</button>
+
+        <!-- NEW BUTTON -->
+        <button onclick="openCustomerDetails()">Customer Details</button>
+      </div>
+      <!-- CUSTOMER DETAILS MODAL -->
+      <div class="modal" id="customerDetailsModal">
+        <h3>Select Customer</h3>
+
+        <div id="customerRadioList"></div>
+
+        <button onclick="selectCustomer()">Select</button>
+        <button class="cancel" onclick="closeModals()">Cancel</button>
+      </div>
+
+      <!-- CUSTOMER LIST -->
+      <div
+        class="customer-section"
+        id="customerListSection"
+        style="display: none"
+      >
+        <h3 class="customer-header">Customer List</h3>
+        <div class="search-box">
+          <input
+            type="text"
+            id="customerSearch"
+            placeholder="Search customers..."
+            onkeyup="searchCustomer()"
+          />
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th>Sr No</th>
+              <th>Customer Name</th>
+              <th>Customer ID</th>
+            </tr>
+          </thead>
+          <tbody id="customerListBody"></tbody>
+        </table>
+      </div>
+
+      <!-- EMPLOYEE LIST -->
+      <section class="employee-section">
+        <h3 class="employee-header">Employee List</h3>
+        <div class="search-box">
+          <input
+            type="text"
+            id="employeeSearch"
+            placeholder="Search employees..."
+            onkeyup="searchEmployee()"
+          />
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th>Sr No</th>
+              <th>Employee Name</th>
+              <th>Employee ID</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+
+          <tbody id="employeeList"></tbody>
+        </table>
+      </section>
+    </div>
+
+    <!-- ADD USER -->
+    <div class="modal" id="userModal">
+      <h3>Add Employee</h3>
+      <input type="text" id="empName" placeholder="Employee Name" />
+      <input type="text" id="empId" placeholder="Employee ID" />
+      <div class="password-wrapper">
+        <input type="password" id="empPassword" placeholder="Password" />
+        <span class="eye" onclick="togglePassword('empPassword', this)">👁</span>
+      </div>
+
+      <button onclick="addEmployee()">Done</button>
+      <button class="cancel" onclick="closeModals()">Cancel</button>
+    </div>
+
+    <!-- ADD CUSTOMER -->
+    <div class="modal" id="customerModal">
+      <h3>Add Customer</h3>
+      <input type="text" id="custName" placeholder="Customer Name" />
+      <input type="text" id="custId" placeholder="Customer ID" />
+      <div class="password-wrapper">
+        <input type="password" id="custPassword" placeholder="Password" />
+        <span class="eye" onclick="togglePassword('custPassword', this)"
+          >👁</span
+        >
+      </div>
+
+      <button onclick="addCustomer()">Add Customer</button>
+      <button class="cancel" onclick="closeModals()">Cancel</button>
+    </div>
+
+    <!-- ASSIGN -->
+    <div class="modal" id="assignModal">
+      <h3 id="assignTitle">Assign Customers</h3>
+      <div id="customerCheckboxes"></div>
+
+      <button onclick="assignCustomer()">Assign</button>
+      <button onclick="notAssignCustomer()" class="danger">Not Assign</button>
+      <button class="cancel" onclick="closeModals()">Cancel</button>
+    </div>
+
+    <!-- DELETE CONFIRM -->
+    <div class="modal" id="deleteModal">
+      <h3 id="deleteText"></h3>
+      <button onclick="confirmDelete()">Confirm</button>
+      <button class="cancel" onclick="closeModals()">Cancel</button>
+    </div>
+
+    <!-- MESSAGE POPUP -->
+    <div class="modal" id="messageModal">
+      <h3 id="messageText"></h3>
+      <button onclick="closeModals()">OK</button>
+    </div>
+    <!-- CUSTOMER DETAILS SECTION -->
+    <div
+      class="customer-section"
+      id="customerDetailsSection"
+      style="display: none"
+    >
+      <h3 class="customer-header">Customer Details</h3>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Caption</th>
+            <th>Platform</th>
+            <th>Status</th>
+            <th>Schedule</th>
+          </tr>
+        </thead>
+
+        <tbody id="customerDetailsBody"></tbody>
+      </table>
+    </div>
+    <!--javascript -->
+
+    <script>
+      let deleteType = "";
+      let deleteId = "";
+
+      const API = "http://localhost:3000";
+
+      /* ================= BLUR ================= */
+      function blurOn() {
+        document.getElementById("blur").classList.add("blur");
+      }
+      function blurOff() {
+        document.getElementById("blur").classList.remove("blur");
+      }
+      function closeModals() {
+        blurOff();
+        document
+          .querySelectorAll(".modal")
+          .forEach((m) => m.classList.remove("show"));
+      }
+      function clearInputs() {
+        document
+          .querySelectorAll(".modal input")
+          .forEach((i) => (i.value = ""));
+      }
+
+      function showMessage(message) {
+        blurOn();
+        document.getElementById("messageText").innerText = message;
+        document.getElementById("messageModal").classList.add("show");
+      }
+
+      /* ================= OPEN MODALS ================= */
+      function openUser() {
+        clearInputs();
+        blurOn();
+        userModal.classList.add("show");
+      }
+      function openCustomer() {
+        clearInputs();
+        blurOn();
+        customerModal.classList.add("show");
+      }
+
+      /* ================= LOAD DATA ================= */
+      window.onload = () => {
+        loadEmployees();
+        loadCustomers();
+      };
+
+      function loadEmployees() {
+        fetch(API + "/employees")
+          .then((res) => res.json())
+          .then((data) => {
+            employeeList.innerHTML = "";
+            data.forEach((e, i) => {
+              employeeList.innerHTML += `
+<tr>
+  <td>
+    <div class="delete-box"
+      onclick="openDelete('employee','${e.emp_id}')">✖</div>
+  </td>
+  <td>${i + 1}</td>
+  <td onclick="openAssign('${e.emp_id}', '${e.assigned_customers || ""}')">
+    ${e.emp_name}
+    <div class="assigned-customers">${e.assigned_customers || ""}</div>
+  </td>
+  <td>${e.emp_id}</td>
+  <td class="${e.assigned_customers ? "assigned" : "not"}">
+    ${e.assigned_customers ? "Assigned" : "Not Assigned"}
+  </td>
+</tr>`;
+            });
+          });
+      }
+      function loadCustomers() {
+        fetch(API + "/customers")
+          .then((res) => res.json())
+          .then((data) => {
+            customerListBody.innerHTML = "";
+            data.forEach((c, i) => {
+              customerListBody.innerHTML += `
+<tr>
+  <td>
+    <div class="delete-box small"
+      onclick="openDelete('customer','${c.cust_id}')">✖</div>
+  </td>
+  <td>${i + 1}</td>
+  <td>${c.cust_name}</td>
+  <td>${c.cust_id}</td>
+</tr>`;
+            });
+          });
+      }
+
+      /* ================= ADD EMPLOYEE ================= */
+      function addEmployee() {
+        if (!empName.value || !empId.value || !empPassword.value) {
+          showMessage("Fill all fields");
+          return;
+        }
+
+        fetch(API + "/employees", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: empName.value,
+            empId: empId.value,
+            password: empPassword.value,
+            customers: [] 
+          }),
+        })
+          .then((res) => res.text())
+          .then((msg) => {
+            closeModals();
+            showMessage(msg);
+            loadEmployees();
+          });
+      }
+
+      /* ================= ADD CUSTOMER ================= */
+      function addCustomer() {
+        if (!custName.value || !custId.value || !custPassword.value) {
+          showMessage("Fill all fields");
+          return;
+        }
+
+        fetch(API + "/customers", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: custName.value,
+            custId: custId.value,
+            password: custPassword.value,
+          }),
+        })
+          .then((res) => res.text())
+          .then((msg) => {
+            closeModals();
+            showMessage(msg);
+            loadCustomers();
+          });
+      }
+
+      /* ================= ASSIGN ================= */
+      let currentEmpId = "";
+
+      function openAssign(empId, assignedCustomers) {
+        currentEmpId = empId;
+        blurOn();
+        assignModal.classList.add("show");
+        customerCheckboxes.innerHTML = "";
+
+        // string → array
+        let assigned = [];
+        if (assignedCustomers) {
+          assigned = assignedCustomers.split(",").map((c) => c.trim());
+        }
+
+        fetch(API + "/customers")
+          .then((res) => res.json())
+          .then((data) => {
+            data.forEach((c) => {
+              const checked = assigned.includes(c.cust_name);
+
+              customerCheckboxes.innerHTML += `
+          <div class="customer-row">
+            <input type="checkbox" value="${c.cust_name}" ${
+                checked ? "checked" : ""
+              }>
+            <span>${c.cust_name} (${c.cust_id})</span>
+          </div>
+        `;
+            });
+          });
+      }
+
+      function assignCustomer() {
+        const selected = [
+          ...document.querySelectorAll("#customerCheckboxes input:checked"),
+        ].map((i) => i.value);
+
+        fetch(API + "/assign", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            empId: currentEmpId,
+            customers: selected,
+          }),
+        }).then(() => {
+          closeModals();
+          loadEmployees();
+        });
+      }
+
+      /*==========Not assign=============*/
+      function notAssignCustomer() {
+        if (!currentEmpId) return;
+
+        closeModals();
+        blurOn();
+
+        document.getElementById("deleteText").innerText =
+          "Remove all assigned customers from this employee?";
+
+        deleteType = "unassign"; // simple type
+        deleteModal.classList.add("show");
+      }
+
+      /* ================= CUSTOMER LIST TOGGLE ================= */
+      function toggleCustomerList() {
+        const section = document.getElementById("customerListSection");
+        section.style.display =
+          section.style.display === "none" ? "block" : "none";
+      }
+
+      function openDelete(type, id) {
+        deleteType = type;
+        deleteId = id;
+        blurOn();
+        deleteText.innerText = `Do you want to remove this ${type}?`;
+        deleteModal.classList.add("show");
+      }
+
+      function confirmDelete() {
+        if (deleteType === "unassign") {
+          fetch(API + "/unassign/" + currentEmpId, {
+            method: "PUT",
+          })
+            .then((res) => res.text())
+            .then((msg) => {
+              closeModals();
+              showMessage(msg);
+              loadEmployees();
+            });
+
+          return; // important
+        }
+
+        // 👇 Ye purana wala same rahega
+        fetch(`${API}/${deleteType}s/${deleteId}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.text())
+          .then((msg) => {
+            closeModals();
+            showMessage(msg);
+            loadEmployees();
+            loadCustomers();
+          });
+      }
+
+      /* ================= SEARCH ================= */
+      function searchEmployee() {
+        const val = employeeSearch.value.toLowerCase();
+        document.querySelectorAll("#employeeList tr").forEach((r) => {
+          r.style.display = r.innerText.toLowerCase().includes(val)
+            ? ""
+            : "none";
+        });
+      }
+
+      function searchCustomer() {
+        const val = customerSearch.value.toLowerCase();
+        document.querySelectorAll("#customerListBody tr").forEach((r) => {
+          r.style.display = r.innerText.toLowerCase().includes(val)
+            ? ""
+            : "none";
+        });
+      }
+
+      function togglePassword(id, element) {
+        const input = document.getElementById(id);
+
+        if (input.type === "password") {
+          input.type = "text";
+          element.innerHTML = "🙈";
+        } else {
+          input.type = "password";
+          element.innerHTML = "👁";
+        }
+      }
+
+      function openCustomerDetails() {
+        customerDetailsModal.classList.add("show");
+
+        customerRadioList.innerHTML = "";
+
+        fetch(API + "/customers")
+          .then((res) => res.json())
+          .then((data) => {
+            data.forEach((c) => {
+              customerRadioList.innerHTML += `
+          <div class="customer-row">
+           <input type="radio" name="selectedCustomer"
+       value="${c.cust_id}">
+            <span>${c.cust_name} (${c.cust_id})</span>
+          </div>
+        `;
+            });
+          });
+      }
+      function selectCustomer() {
+        const selected = document.querySelector(
+          'input[name="selectedCustomer"]:checked'
+        );
+
+        if (!selected) {
+          showMessage("Please select a customer");
+          return;
+        }
+
+        showMessage("Selected: " + selected.value);
+        closeModals();
+      }
+
+      function selectCustomer() {
+        const selected = document.querySelector(
+          'input[name="selectedCustomer"]:checked'
+        );
+
+        if (!selected) {
+          showMessage("Please select a customer");
+          return;
+        }
+
+        const custId = selected.value;
+
+        closeModals(); // selection modal close
+
+        fetch(API + "/customer-details/" + custId)
+          .then((res) => res.json())
+          .then((data) => {
+            const section = document.getElementById("customerDetailsSection");
+
+            const body = document.getElementById("customerDetailsBody");
+
+            body.innerHTML = "";
+
+            if (data.length === 0) {
+              body.innerHTML =
+                "<tr><td colspan='5'>No content available</td></tr>";
+            }
+
+            data.forEach((post) => {
+              body.innerHTML += `
+          <tr>
+            <td>${post.title}</td>
+            <td>${post.caption}</td>
+            <td>${post.platform}</td>
+            <td>${post.status}</td>
+            <td>${post.schedule_date || "-"}</td>
+          </tr>
+        `;
+            });
+
+            // 👇 SHOW SECTION LIKE CUSTOMER LIST
+            section.style.display = "block";
+
+            // optional scroll
+            section.scrollIntoView({ behavior: "smooth" });
+          });
+      }
+    </script>
+  </body>
+</html>

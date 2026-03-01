@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PostPolit</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+
+  <body>
+    <header>
+      <div class="logo">
+        <img src="./images/logo.png" alt="postpilot Logo" />
+        <p>PostPilot</p>
+      </div>
+
+      <!-- hidden checkbox for toggle -->
+      <input type="checkbox" id="menu-toggle" />
+
+      <!-- hamburger icon -->
+      <label for="menu-toggle" class="menu-icon">
+        <span></span>
+        <span></span>
+        <span></span>
+      </label>
+
+      <!-- nav menu -->
+      <nav>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="./about_us.html">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li>
+            <a href="./Login.html" id="L-form"
+              ><i class="fa-solid fa-user"></i>Login</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <!-- HERO SECTION -->
+      <div id="home">
+        <section class="hero">
+          <div class="hero-content">
+            <div class="hero-badge">
+              <span>PREMIUM</span>
+            </div>
+            <h1>
+              <span class="postpolit">Postpilot</span> - We don't just post. We
+              grow your brand !!!
+            </h1>
+            <p class="typing-animation">
+              Smart posting, Consistent,Optimized and Enagementing
+            </p>
+            <div class="hero-buttons">
+              <a href="./Login.html" class="btn-glow">Register Now</a>
+              <a href="#features" class="btn-outline">Learn More</a>
+            </div>
+          </div>
+          <div class="hero-visual">
+            <div class="animated-cube">
+              <div class="cube-face front">
+                <div class="code-container">
+                  <div class="code-header">
+                    <span class="code-dot red"></span>
+                    <span class="code-dot yellow"></span>
+                    <span class="code-dot green"></span>
+                    <span class="code-title">PostPolit</span>
+                  </div>
+                  <!-- Dummy js just for showing on the cube side it will not excecute.-->
+                  <pre
+                    class="code-content"
+                  ><code class="language-javascript"> Facebook</code></pre>
+                </div>
+              </div>
+              <div class="cube-face back">
+                <div class="code-container">
+                  <div class="code-header">
+                    <span class="code-dot red"></span>
+                    <span class="code-dot yellow"></span>
+                    <span class="code-dot green"></span>
+                    <span class="code-title">PostPolit</span>
+                  </div>
+                  <pre
+                    class="code-content"
+                  ><code class="language-css">Instagram</code></pre>
+                </div>
+              </div>
+              <div class="cube-face right">
+                <div class="code-container">
+                  <div class="code-header">
+                    <span class="code-dot red"></span>
+                    <span class="code-dot yellow"></span>
+                    <span class="code-dot green"></span>
+                    <span class="code-title">PostPolit</span>
+                  </div>
+                  <pre
+                    class="code-content"
+                  ><code class="language-html">Facebook</code></pre>
+                </div>
+              </div>
+              <div class="cube-face left">
+                <div class="code-container">
+                  <div class="code-header">
+                    <span class="code-dot red"></span>
+                    <span class="code-dot yellow"></span>
+                    <span class="code-dot green"></span>
+                    <span class="code-title">PostPolit</span>
+                  </div>
+                  <pre
+                    class="code-content"
+                  ><code class="language-python">Instagram</code></pre>
+                </div>
+              </div>
+              <div class="cube-face top">
+                <div class="code-container">
+                  <div class="code-header">
+                    <span class="code-dot red"></span>
+                    <span class="code-dot yellow"></span>
+                    <span class="code-dot green"></span>
+                    <span class="code-title">PostPolit</span>
+                  </div>
+                  <pre
+                    class="code-content"
+                  ><code class="language-javascript">Facebook</code></pre>
+                </div>
+              </div>
+              <div class="cube-face bottom">
+                <div class="code-container">
+                  <div class="code-header">
+                    <span class="code-dot red"></span>
+                    <span class="code-dot yellow"></span>
+                    <span class="code-dot green"></span>
+                    <span class="code-title">PostPolit</span>
+                  </div>
+                  <pre
+                    class="code-content"
+                  ><code class="language-sql">Instagram</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="marquee-container">
+        <div class="list-technical-skills">
+          <div class="box">INSTAGRAM</div>
+          <div class="box">FACEBOOK</div>
+          <div class="box">INSTAGRAM</div>
+          <div class="box">FACEBOOK</div>
+          <div class="box">INSTAGRAM</div>
+          <div class="box">FACEBOOK</div>
+          <div class="box">INSTAGRAM</div>
+          <div class="box">FACEBOOK</div>
+
+          <!-- duplicate for seamless scroll -->
+          <div class="box">INSTAGRAM</div>
+          <div class="box">FACEBOOK</div>
+          <div class="box">INSTAGRAM</div>
+          <div class="box">FACEBOOK</div>
+          <div class="box">INSTAGRAM</div>
+          <div class="box">FACEBOOK</div>
+          <div class="box">INSTAGRAM</div>
+          <div class="box">FACEBOOK</div>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="features-title">
+          <h1>Everything you need to succeed</h1>
+          <p>
+            Powerful features designed for modern marketing teams and content
+            creators.
+          </p>
+        </div>
+        <div class="features">
+          <div class="card">
+            <div class="icon">📅</div>
+            <h3>Smart Scheduling</h3>
+            <p>
+              Plan and schedule posts across all platforms from one unified
+              calendar.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="icon">📊</div>
+            <h3>Analytics Dashboard</h3>
+            <p>
+              Track performance with beautiful, actionable insights and reports.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="icon">👥</div>
+            <h3>Team Collaboration</h3>
+            <p>
+              Streamline workflows with role-based access and approval systems.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="icon">⚡</div>
+            <h3>Quick Publishing</h3>
+            <p>
+              Create and publish content in seconds with our intuitive editor.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="icon">🛡️</div>
+            <h3>Secure & Reliable</h3>
+            <p>Enterprise-grade security with 99.9% uptime guarantee.</p>
+          </div>
+
+          <div class="card">
+            <div class="icon">✨</div>
+            <h3>AI-Powered</h3>
+            <p>
+              Get smart suggestions for captions, hashtags, and posting times.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!--Contact-->
+      <div id="contact">
+        <h1>Let's get in touch</h1>
+        <div class="grid-contact">
+          <div class="contact-form">
+            <h2>Send us a Message</h2>
+            <form>
+              <label for="name">Name:</label>
+              <input
+                type="text"
+                id="name"
+                placeholder="Enter your name"
+              /><br /><br />
+
+              <label for="email">Email: </label>
+              <input
+                type="email"
+                id="email"
+                placeholder="Enter your email"
+              /><br /><br />
+
+              <label for="message">Message: </label><br />
+
+              <textarea
+                placeholder="Tell us about your goals and how we can help you..."
+                rows="10px"
+                cols="40px"
+              ></textarea>
+
+              <button type="submit" class="submit">Submit</button>
+            </form>
+          </div>
+          <div class="contact-details">
+            <h2>Contact Info</h2>
+            <div class="email">
+              <img src="https://www.svgrepo.com/show/501173/email.svg" alt="" />
+              <h3 class="label">Email:</h3>
+              <a href="mailto:coderarmy@gmail.com" class="value"
+                >codearmy@gmail.com</a
+              >
+            </div>
+            <div class="location">
+              <img
+                src="https://www.svgrepo.com/show/522167/location.svg"
+                alt=""
+              />
+              <h3 class="label">Location:</h3>
+              <p class="value">Mumbai, Maharashtra.</p>
+            </div>
+            <div class="office-hours">
+              <img src="https://www.svgrepo.com/show/514265/time.svg" alt="" />
+              <h3 class="label">Office Hours:</h3>
+
+              <ul>
+                <li>Monday - Friday: 9:00 AM - 6:00 PM PST</li>
+                <li>Saturday: 10:00 AM - 4:00 PM PST</li>
+                <li>Sunday: Closed</li>
+              </ul>
+            </div>
+            <div class="response-time">
+              <img
+                src="https://www.svgrepo.com/show/488421/time-sand.svg"
+                alt=""
+              />
+              <h3 class="label">Response Time:</h3>
+              <p>
+                We typically respond within 24 hours during business days. For
+                urgent inquiries, please call us directly.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--Footer-->
+      <hr />
+      <div class="footer">
+        <div class="footer-group">
+          <div class="aim">
+            <p class="logos">PostPolit</p>
+            <p class="para">We don't just post. We grow your brand !!!</p>
+          </div>
+
+          <div class="Quick-links">
+            <div class="one-line">
+              <p class="titles">Quick Links</p>
+              <img src="https://www.svgrepo.com/show/347104/links.svg" alt="" />
+            </div>
+            <a href="#home" class="para" id="a-footer">Home</a>
+            <a href="./about_us.html" class="para" id="a-footer">About</a>
+            <a href="#contact" class="para" id="a-footer">Contact</a>
+          </div>
+          <div class="stay-connected">
+            <p class="titles">Stay Connected</p>
+            <a href="https://digistudios.in/" target="_blank">
+              <img
+                src="https://www.svgrepo.com/show/447845/website-click.svg"
+                alt=""
+              />
+            </a>
+            <a
+              href="https://www.facebook.com/share/14VBqfcJjDN/"
+              target="_blank"
+            >
+              <img
+                src="https://www.svgrepo.com/show/521654/facebook.svg"
+                alt=""
+            /></a>
+
+            <a
+              href="https://www.instagram.com/digistudio_?igsh=enhzMWhjcDVnN3dq"
+              target="_blank"
+            >
+              <img
+                src="https://www.svgrepo.com/show/510026/instagram.svg"
+                alt=""
+            /></a>
+          </div>
+        </div>
+        <div class="copyright">
+          <p>Copyright&copy; 2026 by postpilot | All Rights Reserved.</p>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

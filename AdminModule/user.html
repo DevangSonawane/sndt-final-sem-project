@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Content Manager</title>
+    <link rel="stylesheet" href="user.css" />
+  </head>
+
+  <body>
+    <!-- ================= CONTENT MODULE ================= -->
+    <div class="content-wrapper">
+      <div class="content-header">
+        <div>
+          <h2>Content</h2>
+          <p>Manage all your social media content</p>
+        </div>
+
+        <button id="openModal" class="new-post-btn">+ New Post</button>
+      </div>
+
+      <div class="search-filter">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search by Title or Date..."
+        />
+      </div>
+
+      <div class="table-container">
+        <table class="content-table">
+          <thead>
+            <tr>
+              <th style="width: 45%">Title</th>
+              <th>Platform</th>
+              <th>Status</th>
+              <th>Date</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="contentTable"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ================= SOCIAL ACCOUNTS ================= -->
+
+    <div class="accounts-wrapper">
+      <div class="accounts-header">
+        <h2>Social Accounts</h2>
+        <p>Connect your Instagram and Facebook accounts</p>
+      </div>
+
+      <div class="accounts-container">
+        <div class="account-card">
+          <div class="account-left">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png"
+            />
+            <div>
+              <h3>Instagram</h3>
+              <p id="instaStatus">Not Connected</p>
+            </div>
+          </div>
+
+          <button class="connect-btn insta-btn" id="connectInstagramBtn">
+            Connect
+          </button>
+        </div>
+
+        <div class="account-card">
+          <div class="account-left">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png"
+            />
+            <div>
+              <h3>Facebook</h3>
+              <p id="fbStatus">Not Connected</p>
+            </div>
+          </div>
+
+          <button class="connect-btn fb-btn" id="connectFacebookBtn">
+            Connect
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="user.js"></script>
+    <script src="loadLayout.js"></script>
+  </body>
+</html>

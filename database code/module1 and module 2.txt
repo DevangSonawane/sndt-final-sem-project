@@ -1,0 +1,33 @@
+CREATE DATABASE admin_dashboard;
+use admin_dashboard;
+show  databases;
+
+CREATE TABLE employees (
+  emp_id VARCHAR(50) NOT NULL,
+  emp_name VARCHAR(100) NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  assigned_customers TEXT,
+  PRIMARY KEY (emp_id, password)
+);
+
+CREATE TABLE customers (
+  cust_id VARCHAR(50) NOT NULL,
+  cust_name VARCHAR(100) NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  PRIMARY KEY (cust_id, password)
+);
+
+
+CREATE TABLE admin (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(50),
+  password VARCHAR(50)
+);
+
+INSERT INTO admin (username, password)
+VALUES ('admin2026', 'admin2026');
+
+SHOW COLUMNS FROM customers;
+SHOW COLUMNS FROM employees;
+SELECT * FROM customers;
+SELECT * FROM employees;

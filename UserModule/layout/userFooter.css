@@ -1,0 +1,123 @@
+hr{
+  width:100vw;
+  margin-left:calc(-50vw + 50%);
+}
+.footer {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  background: #800020;
+  color: #f1e6d6;
+  padding: 50px 0 25px 0;
+  font-family: Poppins, sans-serif;
+  margin-top: auto;
+}
+.footer-group {
+   width:100%;
+  max-width: 1200px;
+  margin:  0 auto;
+   padding:0 30px;  
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  align-items: start;
+}
+
+/* LEFT */
+
+.aim{
+  text-align: center;
+}
+
+.aim .logos {
+  margin-bottom: 8px;
+  font-family: "Times New Roman", Times, serif;
+   color: rgb(234, 221, 202);
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.aim .para {
+      color: rgb(234, 221, 202);
+    display: block;
+    margin-bottom: 2px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* CENTER */
+.Quick-links {
+  text-align: center;   
+}
+.Quick-links .one-line {
+  display: flex;
+  justify-content: center;  
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px; 
+}
+
+.Quick-links .titles {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.Quick-links img {
+  width: 20px;
+   filter: invert(88%) sepia(12%) saturate(294%) hue-rotate(349deg) brightness(96%) contrast(92%);
+}
+
+.Quick-links .para {
+  display: block;
+  color: #f1e6d6;
+  text-decoration: none;
+  margin-bottom: 6px;
+  font-size: 14px;
+  text-align: center;         
+}
+
+/* RIGHT */
+.stay-connected .titles {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.stay-connected a img {
+  width: 26px;
+  margin-right: 10px;
+ filter: invert(88%) sepia(12%) saturate(294%) hue-rotate(349deg) brightness(96%) contrast(92%);
+}
+
+/* BOTTOM */
+.copyright {
+  text-align: center;
+  margin-top: 40px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(255,255,255,0.3);
+  font-size: 14px;
+}
+/* ===== MOBILE RESPONSIVE FIX ===== */
+@media (max-width: 768px){
+
+  .footer-group{
+    grid-template-columns: 1fr;   /* stack */
+    text-align: center;
+    gap: 25px;
+  }
+
+  .Quick-links,
+  .aim,
+  .stay-connected{
+    text-align: center;
+  }
+
+  .Quick-links .one-line{
+    justify-content: center;
+  }
+
+  .stay-connected{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}

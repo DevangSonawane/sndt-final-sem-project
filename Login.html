@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Login</title>
+
+    <link rel="stylesheet" href="./css/Login.css" />
+  </head>
+
+  <body>
+    <div class="login-container">
+      <h2>Login</h2>
+
+      <div class="input-box">
+        <input type="text" id="username" placeholder="Username" />
+        <span class="icon">👤</span>
+      </div>
+
+      <div class="input-box">
+        <input type="password" id="password" placeholder="Password" />
+        <span class="icon" onclick="togglePassword(this)">👁</span>
+      </div>
+
+      <div class="options">
+        <label> <input type="checkbox" /> Remember me </label>
+        <a href="./forget.html">Forgot password?</a>
+      </div>
+
+      <button type="button" onclick="login()">Login</button>
+
+      <p class="register">
+        Don't have an account? <a href="./Registration_form.html">Register</a>
+      </p>
+    </div>
+
+    <!-- POPUP -->
+    <div class="popup" id="popup">
+      <div class="popup-box">
+        <p id="popupMessage"></p>
+        <button onclick="closePopup()">OK</button>
+      </div>
+    </div>
+
+    <script>
+      function showPopup(message) {
+        document.getElementById("popupMessage").innerText = message;
+        document.getElementById("popup").style.display = "flex";
+      }
+
+      function closePopup() {
+        document.getElementById("popup").style.display = "none";
+      }
+
+      function togglePassword(element) {
+        const input = document.getElementById("password");
+
+        if (input.type === "password") {
+          input.type = "text";
+          element.innerHTML = "🙈";
+        } else {
+          input.type = "password";
+          element.innerHTML = "👁";
+        }
+      }
+
+      function login() {
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        fetch("http://localhost:3000/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+          body: JSON.stringify({ username, password }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+             console.log("Login response:", data);
+            if (data.role === "admin") {
+              sessionStorage.setItem("employeeId", data.employeeId);
+              sessionStorage.setItem("employeeName", data.name);
+              window.location.href = "./AdminModule/admin.html";
+            } else if (data.role === "user") {
+
+  const session = {
+    employeeId: data.employeeId,
+    name: data.name,
+    assigned: data.assigned,
+    loginTime: Date.now()
+  };
+
+  localStorage.setItem("loggedInUser", JSON.stringify(session));
+
+  localStorage.setItem("employeeId", data.employeeId);
+
+  window.location.href = "./UserModule/user.html";
+} else {
+              showPopup("Invalid credentials ❌");
+            }
+          })
+          .catch(() => {
+            showPopup("Server error ❌");
+          });
+      }
+    </script>
+  </body>
+</html>

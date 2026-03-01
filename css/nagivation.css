@@ -1,0 +1,172 @@
+/* HEADER */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background: #f1e6d6;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* LOGO */
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: fadeInUp 1s ease forwards;
+}
+.logo img {
+  width: 35px;
+  height: 35px;
+  object-fit: cover;
+}
+.logo p {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #800020;
+}
+
+/* HIDE CHECKBOX */
+#menu-toggle {
+  display: none;
+}
+
+/* HAMBURGER ICON */
+.menu-icon {
+  position: absolute;
+  right: 20px; /*Pinned to right edge */
+  top: 22px; /*Align vertically */
+  display: flex;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 28px;
+  height: 20px;
+  cursor: pointer;
+}
+.menu-icon span {
+  height: 4px;
+  width: 100%;
+  background: #800020;
+  border-radius: 3px;
+  transition: 0.3s;
+}
+
+/* NAV MENU — default hidden (mobile) */
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 15px;
+  position: absolute;
+  top: 60px;
+  right: 0;
+  width: 200px;
+  background: #eaddca;
+  border-radius: 10px 0 0 10px;
+  display: none;
+  flex-direction: column;
+}
+nav ul li {
+  text-align: right;
+}
+nav ul li a {
+  color: #800020;
+  text-decoration: none;
+  display: block;
+  padding: 8px 0;
+  transition: 0.3s;
+}
+nav ul li a:hover {
+  color: #e4c088;
+  box-shadow: #800020;
+}
+
+#L-form {
+  border: 2px solid #800020;
+  padding: 5px;
+  border-radius: 20px;
+}
+
+/* SHOW MENU WHEN CHECKED */
+#menu-toggle:checked + .menu-icon + nav ul {
+  display: flex;
+}
+
+/* HAMBURGER → X ANIMATION */
+#menu-toggle:checked + .menu-icon span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+#menu-toggle:checked + .menu-icon span:nth-child(2) {
+  opacity: 0;
+}
+#menu-toggle:checked + .menu-icon span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/*---Tablet---*/
+@media screen and (min-width: 600px) {
+  html,
+  body {
+    width: 100%;
+    position: relative;
+  }
+
+  /* Show nav horizontally */
+  nav ul {
+    position: static;
+    display: flex;
+    flex-direction: row;
+    background: none;
+    padding: 0;
+    width: auto;
+    gap: 25px;
+  }
+
+  nav ul li {
+    text-align: left;
+  }
+
+  /* Hide hamburger */
+  .menu-icon {
+    display: none;
+  }
+}
+
+/* --- Tablet styles AND UP --- */
+@media screen and (min-width: 900px) {
+  label,
+  textarea {
+    margin-left: 3%;
+  }
+  html,
+  body {
+    width: 100%;
+    position: relative;
+  }
+
+  /* Show nav horizontally */
+  nav ul {
+    position: static;
+    display: flex;
+    flex-direction: row;
+    background: none;
+    padding: 0;
+    width: auto;
+    gap: 25px;
+  }
+
+  nav ul li {
+    text-align: left;
+  }
+
+  /* Hide hamburger */
+  .menu-icon {
+    display: none;
+  }
+}
+
+@media (min-width: 1024px) {
+}
