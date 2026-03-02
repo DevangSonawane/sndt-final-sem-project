@@ -168,6 +168,44 @@ app.get("/employees", (req, res) => {
   });
 });
 
+app.post("/employees", (req, res) => {
+  const { name, empId, password } = req.body;
+
+  // Check if ID or password already exists
+  db.query(
+    "SELECT * FROM employees WHERE emp_id=? OR password=?",
+    [empId, password],
+    (err, result) => {
+      if (err) {
+        console.error("Database error checking duplicates:", err);
+        return res.status(500).send("Database error");
+      }
+      if (result.length > 0) {
+        const existsId = result.some((r) => r.emp_id === empId);
+        const existsPassword = result.some((r) => r.password === password);
+        let msg = "Already exists: ";
+        if (existsId && existsPassword) msg += "ID and Password";
+        else if (existsId) msg += "ID";
+        else if (existsPassword) msg += "Password";
+        return res.status(400).send(msg);
+      }
+
+      // If no duplicates, insert
+      db.query(
+        "INSERT INTO employees (emp_name, emp_id, password) VALUES (?,?,?)",
+        [name, empId, password],
+        (err) => {
+          if (err) {
+            console.error("Database error inserting employee:", err);
+            return res.status(500).send("Database error");
+          }
+          res.send("Employee added 🎉!!!");
+        }
+      );
+    }
+  );
+});
+
 
 /* ================= CUSTOMERS ================= */
 
